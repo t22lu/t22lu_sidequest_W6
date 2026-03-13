@@ -90,7 +90,7 @@ const GRAVITY = 10;
 
 function preload() {
   // --- IMAGES ---
-  playerImg = loadImage("assets/knightSpriteSheet.png");
+  playerImg = loadImage("assets/wolfSpriteSheet.png");
   bgFarImg = loadImage("assets/background_layer_1.png");
   bgMidImg = loadImage("assets/background_layer_2.png");
   bgForeImg = loadImage("assets/background_layer_3.png");
