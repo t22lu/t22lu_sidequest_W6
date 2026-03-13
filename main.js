@@ -37,7 +37,10 @@ import { LevelLoader } from "./src/LevelLoader.js";
 import { Game } from "./src/Game.js";
 import { ParallaxBackground } from "./src/ParallaxBackground.js";
 import { loadAssets } from "./src/AssetLoader.js";
-import { applyIntegerScale, installResizeHandler } from "./src/utils/IntegerScale.js";
+import {
+  applyIntegerScale,
+  installResizeHandler,
+} from "./src/utils/IntegerScale.js";
 
 import { CameraController } from "./src/CameraController.js";
 import { InputManager } from "./src/InputManager.js";
@@ -130,6 +133,14 @@ async function boot() {
   // (AudioContext may still be locked until the user clicks/presses a key.)
   soundManager = new SoundManager();
 
+  soundManager.load("leaf", "sfx/leafCollect.mp3");
+  soundManager.load("jump", "sfx/jump.ogg");
+  soundManager.load("attack", "sfx/howl.mp3");
+  soundManager.load("hit", "sfx/hitEnemy.wav");
+  soundManager.load("hurt", "sfx/receiveDamage.mp3");
+
+  soundManager.loadMusic("sfx/bgMusic.mp3");
+
   // --- Parallax layer defs (VIEW) ---
   const defs = levelPkg.level?.view?.parallax ?? [];
   parallaxLayers = defs
@@ -144,6 +155,11 @@ async function boot() {
 
   bootDone = true;
   console.log("BOOT: done");
+
+  setTimeout(() => {
+    console.log("Testing sound...");
+    soundManager.play("leaf");
+  }, 3000);
 }
 
 // ------------------------------------------------------------
@@ -298,10 +314,12 @@ function draw() {
 
 function mousePressed() {
   unlockAudioOnce();
+  soundManager?.playMusic();
 }
 
 function keyPressed(evt) {
   unlockAudioOnce();
+  soundManager?.playMusic();
   return preventKeysThatScroll(evt);
 }
 
