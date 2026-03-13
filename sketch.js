@@ -27,11 +27,16 @@ let playerAnis = {
   idle: { row: 0, frames: 4, frameDelay: 10 },
   run: { row: 1, frames: 4, frameDelay: 3 },
   jump: { row: 2, frames: 3, frameDelay: Infinity, frame: 0 },
-  attack: { row: 3, frames: 6, frameDelay: 2 },
+  attack: { row: 10, frames: 6, frameDelay: 2 },
 };
 
 let ground, groundDeep, platformsL, platformsR, wallsL, wallsR;
-let groundTile1Img, groundTile2Img, platforTileLImg, platforTileRImg, wallTileLImg, wallTileRImg;
+let groundTile1Img,
+  groundTile2Img,
+  platforTileLImg,
+  platforTileRImg,
+  wallTileLImg,
+  wallTileRImg;
 
 //let bgFarX, bgMidX, bgForeX;
 
@@ -85,7 +90,7 @@ const GRAVITY = 10;
 
 function preload() {
   // --- IMAGES ---
-  playerImg = loadImage("assets/foxSpriteSheet.png");
+  playerImg = loadImage("assets/knightSpriteSheet.png");
   bgFarImg = loadImage("assets/background_layer_1.png");
   bgMidImg = loadImage("assets/background_layer_2.png");
   bgForeImg = loadImage("assets/background_layer_3.png");
@@ -202,7 +207,11 @@ function draw() {
 
   // camera follow player
   let targetX = constrain(player.x, VIEWW / 2, LEVELW - VIEWW / 2 - TILE_W / 2);
-  let targetY = constrain(player.y, VIEWH / 2 - TILE_H * 2, LEVELH - VIEWH / 2 - TILE_H);
+  let targetY = constrain(
+    player.y,
+    VIEWH / 2 - TILE_H * 2,
+    LEVELH - VIEWH / 2 - TILE_H,
+  );
 
   // smooth + snap
   camera.x = Math.round(lerp(camera.x || targetX, targetX, 0.1));
@@ -210,7 +219,10 @@ function draw() {
 
   // --- PLAYER CONTROLS ---
   // first check to see if the player is on the ground or a platform
-  let grounded = sensor.overlapping(ground) || sensor.overlapping(platformsL) || sensor.overlapping(platformsR);
+  let grounded =
+    sensor.overlapping(ground) ||
+    sensor.overlapping(platformsL) ||
+    sensor.overlapping(platformsR);
 
   // -- ATTACK INPUT --
   if (grounded && !attacking && kb.presses("space")) {
@@ -312,7 +324,10 @@ function draw() {
 
 function applyIntegerScale() {
   const c = document.querySelector("canvas");
-  const scale = Math.max(1, Math.floor(Math.min(window.innerWidth / VIEWW, window.innerHeight / VIEWH)));
+  const scale = Math.max(
+    1,
+    Math.floor(Math.min(window.innerWidth / VIEWW, window.innerHeight / VIEWH)),
+  );
   c.style.width = VIEWW * scale + "px";
   c.style.height = VIEWH * scale + "px";
 }
