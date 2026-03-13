@@ -88,6 +88,8 @@ const PLAYER_START_Y = LEVELH - TILE_H * 4;
 // gravity
 const GRAVITY = 10;
 
+//adding in new layers
+
 function preload() {
   // --- IMAGES ---
   playerImg = loadImage("assets/wolfSpriteSheet.png");
