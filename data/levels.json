@@ -42,7 +42,11 @@
         "background": [69, 61, 79],
         "cameraLerp": 0.1,
 
-        "parallax": [{ "img": "assets/Background.png", "speed": 0.2 }]
+        "parallax": [
+          { "img": "assets/background_layer_1.png", "speed": 0.2 },
+          { "img": "assets/background_layer_2.png", "speed": 0.4 },
+          { "img": "assets/background_layer_3.png", "speed": 0.6 }
+        ]
       },
 
       "overrides": {
