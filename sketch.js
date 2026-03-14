@@ -66,7 +66,20 @@ let groundTileImg,
   wallRImg;
 
 let bgLayers = [];
-let bgForeImg, bgMidImg, bgFarImg;
+// let bgForeImg, bgMidImg, bgFarImg;
+
+let bg1Img,
+  bg2Img,
+  bg3Img,
+  bg4Img,
+  bg5Img,
+  bg6Img,
+  bg7Img,
+  bg8Img,
+  bg9Img,
+  bg10Img,
+  bg11Img,
+  bg12Img;
 
 let leaf;
 let leafImg;
@@ -204,9 +217,19 @@ function preload() {
   leafImg = loadImage("assets/bunnySpriteSheet.png");
   fireImg = loadImage("assets/fireSpriteSheet.png");
 
-  bgFarImg = loadImage("assets/background_layer_1.png");
-  bgMidImg = loadImage("assets/background_layer_2.png");
-  bgForeImg = loadImage("assets/background_layer_3.png");
+  //forest background
+  bg1Img = loadImage("assets/Layer_0011_0.png");
+  bg2Img = loadImage("assets/Layer_0010_1.png");
+  bg3Img = loadImage("assets/Layer_0009_2.png");
+  bg4Img = loadImage("assets/Layer_0008_3.png");
+  bg5Img = loadImage("assets/Layer_0007_Lights.png");
+  bg6Img = loadImage("assets/Layer_0006_4.png");
+  bg7Img = loadImage("assets/Layer_0005_5.png");
+  bg8Img = loadImage("assets/Layer_0004_Lights.png");
+  bg9Img = loadImage("assets/Layer_0003_6.png");
+  bg10Img = loadImage("assets/Layer_0002_7.png");
+  bg11Img = loadImage("assets/Layer_0001_8.png");
+  bg12Img = loadImage("assets/Layer_0000_9.png");
 
   groundTileImg = loadImage("assets/groundTile.png");
   groundTileDeepImg = loadImage("assets/groundTileDeep.png");
@@ -366,12 +389,14 @@ function draw() {
 
   for (const layer of bgLayers) {
     const img = layer.img;
-    const w = img.width;
+    const h = VIEWH * layer.scaleY;
 
-    let x = Math.round((-camera.x * layer.speed) % w);
-    if (x > 0) x -= w;
+    let x = Math.round((-camera.x * layer.speed) % VIEWW);
+    if (x > 0) x -= VIEWW;
 
-    for (let tx = x; tx < VIEWW + w; tx += w) image(img, tx, 0);
+    for (let tx = x; tx < VIEWW + VIEWW; tx += VIEWW) {
+      image(img, tx, -VIEWH * 0.3, VIEWW, VIEWH * 1.3);
+    }
   }
 
   camera.on();
@@ -1272,8 +1297,17 @@ function makeWorld() {
 
   // --- BACKGROUND PARALLAX ---
   bgLayers = [
-    { img: bgFarImg, speed: 0.2 },
-    { img: bgMidImg, speed: 0.4 },
-    { img: bgForeImg, speed: 0.6 },
+    { img: bg1Img, speed: 0.2 },
+    { img: bg2Img, speed: 0.4 },
+    { img: bg3Img, speed: 0.6 },
+    { img: bg4Img, speed: 0.8 },
+    { img: bg5Img, speed: 1.0 },
+    { img: bg6Img, speed: 1.2 },
+    { img: bg7Img, speed: 1.4 },
+    { img: bg8Img, speed: 1.6 },
+    { img: bg9Img, speed: 1.8 },
+    { img: bg10Img, speed: 2.0 },
+    { img: bg11Img, speed: 2.2 },
+    { img: bg12Img, speed: 2.4 },
   ];
 }
