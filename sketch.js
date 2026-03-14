@@ -57,6 +57,9 @@ const KNOCK_FRAMES = 30;
 
 let won = false;
 
+//sound variables
+let bgMusic, hitEnemy, howl, leafCollect, receiveDamage;
+
 let ground, groundDeep, platformsL, platformsR, wallsL, wallsR;
 let groundTileImg,
   groundTileDeepImg,
@@ -117,18 +120,19 @@ let deathFrameTimer = 0;
     f = fire hazard (player takes damage, boars turn around if they "see" it ahead)
       = empty (no sprite)
 */
+
 let level = [
-  "                    g   g   b  x        ", // row  0
-  "                b x         LggR        ", // row  1
-  "      x   f     LggR                    ", // row  2
-  "     LR   LgR          LR               ", // row  3
-  "   fx  b        x   b                   ", // row  4
-  "   LgggR   x   LR   LgR x   b  xf       ", // row  5
-  "         LgR  b x       g   LggggR      ", // row  6
-  " fx           LgR                    fx ", // row  7
-  " LgR      b                         LggR", // row  8
-  "         LgR        f x    LR  LgR  [dd]", // row  9
-  "   x     [d]      x LggR   x    ff  [dd]", // row 10
+  "                                        ", // row 0
+  "                                       ", // row 1
+  "      b x             b x                 ", // row 2
+  "     LggR            LggR                ", // row 3
+  "          x        f                     ", // row 4
+  "        LggR     LggR                    ", // row 5
+  "   x            b                        ", // row 6
+  "  LggR        LggR                       ", // row 7
+  "        f          x                  f   ", // row 8
+  "       LggR     LggR   x           [dd]   ", // row 9
+  "             b      LggR          b [dd] ", // row 10
   "LgggRffLggggggRfffLgggg]fffgfLgggggggggg", // row 11
   "dddddddddddddddddddddddddddddddddddddddd", // row 12
 ];
@@ -241,6 +245,14 @@ function preload() {
 
   //font
   fontImg = loadImage("assets/bitmapFont.png"); //[need to find]
+
+  //sound
+  soundFormats("mp3", "ogg", "wav");
+  bgMusic = loadSound("assets/bgMusic.mp3");
+  hitEnemy = loadSound("assets/hitEnemy.wav");
+  howl = loadSound("assets/howl.mp3");
+  leafCollect = loadSound("assets/leafCollect.mp3");
+  receiveDamage = loadSound("assets/receiveDamage.mp3");
 }
 
 function setup() {
@@ -326,6 +338,7 @@ function draw() {
     player.ani.frame = 0;
     player.ani = "attack";
     player.ani.play();
+    hitEnemy.play();
   }
 
   // JUMP
@@ -338,6 +351,7 @@ function draw() {
     kb.presses("up")
   ) {
     player.vel.y = -1 * PLAYER_JUMP;
+    howl.play();
   }
 
   // --- PLAYER STATE / ANIMATION ---
@@ -596,6 +610,7 @@ function rescueLeaf(player, leaf) {
   leaf.visible = false;
   leaf.removeColliders();
   score++;
+  leafCollect.play();
 
   // win condition
   if (score >= WIN_SCORE) {
@@ -609,6 +624,7 @@ function rescueLeaf(player, leaf) {
 // --- DAMAGE FROM FIRE ---
 function takeDamageFromFire(player, fire) {
   if (invulnTimer > 0 || dead) return;
+  receiveDamage.play();
 
   health = max(0, health - 1);
   if (health <= 0) pendingDeath = true;
@@ -628,6 +644,7 @@ function takeDamageFromFire(player, fire) {
 function playerHitByBoar(player, e) {
   if (e.dying || e.dead) return;
   if (invulnTimer > 0 || dead) return;
+  receiveDamage.play();
 
   health = max(0, health - 1);
   if (health <= 0) pendingDeath = true;
