@@ -231,14 +231,16 @@ function preload() {
   bg11Img = loadImage("assets/Layer_0001_8.png");
   bg12Img = loadImage("assets/Layer_0000_9.png");
 
-  groundTileImg = loadImage("assets/groundTile.png");
-  groundTileDeepImg = loadImage("assets/groundTileDeep.png");
-  platformLCImg = loadImage("assets/platformLC.png");
-  platformRCImg = loadImage("assets/platformRC.png");
-  wallLImg = loadImage("assets/wallL.png");
-  wallRImg = loadImage("assets/wallR.png");
+  //tiles
+  groundTileImg = loadImage("assets/Tile_2.png");
+  groundTileDeepImg = loadImage("assets/Tile_5.png");
+  platformLCImg = loadImage("assets/Tile_1.png");
+  platformRCImg = loadImage("assets/Tile_3.png");
+  wallLImg = loadImage("assets/Tile_4.png");
+  wallRImg = loadImage("assets/Tile_6.png");
 
-  fontImg = loadImage("assets/bitmapFont.png");
+  //font
+  fontImg = loadImage("assets/bitmapFont.png"); //[need to find]
 }
 
 function setup() {
@@ -252,6 +254,13 @@ function setup() {
 
   // Manual physics stepping for stable pixel rendering
   world.autoStep = false;
+
+  groundTileImg.resize(24, 24);
+  groundTileDeepImg.resize(24, 24);
+  platformLCImg.resize(24, 24);
+  platformRCImg.resize(24, 24);
+  wallLImg.resize(24, 24);
+  wallRImg.resize(24, 24);
 
   // HUD buffer
   hudGfx = createGraphics(VIEWW, VIEWH);
@@ -1084,7 +1093,7 @@ function restartGame() {
   boar.spriteSheet = boarImg;
   boar.anis.w = FRAME_W;
   boar.anis.h = FRAME_H;
-  boar.anis.offset.y = -8;
+  boar.anis.offset.y = -4;
   boar.addAnis(boarAnis);
   boar.overlaps(fire, boarDiesInFire);
 
@@ -1095,7 +1104,7 @@ function restartGame() {
 
     e.anis.w = FRAME_W;
     e.anis.h = FRAME_H;
-    e.anis.offset.y = -8;
+    e.anis.offset.y = -4;
     e.addAnis(boarAnis);
 
     e.physics = "dynamic";
@@ -1165,7 +1174,7 @@ function makeWorld() {
   leaf.addAnis({ idle: { w: 32, h: 32, row: 0, frames: 5 } });
   leaf.w = 10;
   leaf.h = 6;
-  leaf.anis.offset.x = 2;
+  leaf.anis.offset.x = -4;
   leaf.anis.offset.y = -4;
   leaf.tile = "x";
 
@@ -1260,7 +1269,7 @@ function makeWorld() {
 
     e.w = BOAR_W;
     e.h = BOAR_H;
-    e.anis.offset.y = -8;
+    e.anis.offset.y = -6;
 
     e.friction = 0;
     e.bounciness = 0;
