@@ -216,43 +216,43 @@ function tileAtWorld(x, y) {
 }
 
 function preload() {
-  playerImg = loadImage("assets/wolfSpriteSheet.png");
-  boarImg = loadImage("assets/bearSpriteSheet.png");
-  leafImg = loadImage("assets/bunnySpriteSheet.png");
+  playerImg = loadImage("assets/wolfSpriteSheet.png"); //[6]
+  boarImg = loadImage("assets/bearSpriteSheet.png"); //[6]
+  leafImg = loadImage("assets/bunnySpriteSheet.png"); //[6]
   fireImg = loadImage("assets/fireSpriteSheet.png");
 
   //forest background
-  bg1Img = loadImage("assets/Layer_0011_0.png");
-  bg2Img = loadImage("assets/Layer_0010_1.png");
-  bg3Img = loadImage("assets/Layer_0009_2.png");
-  bg4Img = loadImage("assets/Layer_0008_3.png");
-  bg5Img = loadImage("assets/Layer_0007_Lights.png");
-  bg6Img = loadImage("assets/Layer_0006_4.png");
-  bg7Img = loadImage("assets/Layer_0005_5.png");
-  bg8Img = loadImage("assets/Layer_0004_Lights.png");
-  bg9Img = loadImage("assets/Layer_0003_6.png");
-  bg10Img = loadImage("assets/Layer_0002_7.png");
-  bg11Img = loadImage("assets/Layer_0001_8.png");
-  bg12Img = loadImage("assets/Layer_0000_9.png");
+  bg1Img = loadImage("assets/Layer_0011_0.png"); //[1]
+  bg2Img = loadImage("assets/Layer_0010_1.png"); //[1]
+  bg3Img = loadImage("assets/Layer_0009_2.png"); //[1]
+  bg4Img = loadImage("assets/Layer_0008_3.png"); //[1]
+  bg5Img = loadImage("assets/Layer_0007_Lights.png"); //[1]
+  bg6Img = loadImage("assets/Layer_0006_4.png"); //[1]
+  bg7Img = loadImage("assets/Layer_0005_5.png"); //[1]
+  bg8Img = loadImage("assets/Layer_0004_Lights.png"); //[1]
+  bg9Img = loadImage("assets/Layer_0003_6.png"); //[1]
+  bg10Img = loadImage("assets/Layer_0002_7.png"); //[1]
+  bg11Img = loadImage("assets/Layer_0001_8.png"); //[1]
+  bg12Img = loadImage("assets/Layer_0000_9.png"); //[1]
 
   //tiles
-  groundTileImg = loadImage("assets/Tile_2.png");
-  groundTileDeepImg = loadImage("assets/Tile_5.png");
-  platformLCImg = loadImage("assets/Tile_1.png");
-  platformRCImg = loadImage("assets/Tile_3.png");
-  wallLImg = loadImage("assets/Tile_4.png");
-  wallRImg = loadImage("assets/Tile_6.png");
+  groundTileImg = loadImage("assets/Tile_2.png"); //[5]
+  groundTileDeepImg = loadImage("assets/Tile_5.png"); //[5]
+  platformLCImg = loadImage("assets/Tile_1.png"); //[5]
+  platformRCImg = loadImage("assets/Tile_3.png"); //[5]
+  wallLImg = loadImage("assets/Tile_4.png"); //[5]
+  wallRImg = loadImage("assets/Tile_6.png"); //[5]
 
   //font
-  fontImg = loadImage("assets/bitmapFont.png"); //[need to find]
+  fontImg = loadImage("assets/bitmapFont.png"); //[3]
 
   //sound
   soundFormats("mp3", "ogg", "wav");
-  bgMusic = loadSound("assets/bgMusic.mp3");
-  hitEnemy = loadSound("assets/hitEnemy.wav");
-  howl = loadSound("assets/howl.mp3");
-  leafCollect = loadSound("assets/leafCollect.mp3");
-  receiveDamage = loadSound("assets/receiveDamage.mp3");
+  bgMusic = loadSound("assets/bgMusic.mp3"); //[7]
+  hitEnemy = loadSound("assets/hitEnemy.wav"); //[8]
+  howl = loadSound("assets/howl.mp3"); //[4]
+  leafCollect = loadSound("assets/leafCollect.mp3"); //[9]
+  receiveDamage = loadSound("assets/receiveDamage.mp3"); //[8]
 }
 
 function setup() {
